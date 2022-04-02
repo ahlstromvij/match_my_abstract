@@ -3,6 +3,14 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from .forms import AbstractForm
+import pandas as pd
+import sklearn
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+from django.templatetags.static import static
+import os
+from django.conf import settings
 
 
 class HomePageView(TemplateView):
@@ -32,4 +40,9 @@ class ResultsView(TemplateView):
 	def post(self, request):
 		context = {}
 		context["user_abstract"] = request.POST['user_abstract']
+
+		file = open(os.path.join(settings.STATIC_ROOT, 'csv/arxiv_df.csv'))
+		df_clean = pd.read_csv(file)
+		context["csv"] = df_clean['journal'][0]
+
 		return render(request, 'results.html', context)
