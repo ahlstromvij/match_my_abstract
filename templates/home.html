@@ -1,2 +1,14 @@
 <!-- templates/home.html -->
-<h1>Match my abstract!</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Match my abstract</h1>
+<p>Paste your abstract below and click submit:</p>
+<form action="/results/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock content %}
