@@ -43,6 +43,46 @@ class ResultsView(TemplateView):
 
 		file = open(os.path.join(settings.STATIC_ROOT, 'csv/arxiv_df.csv'))
 		df_clean = pd.read_csv(file)
-		context["csv"] = df_clean['journal'][0]
+
+		documents = []
+		for index, row in df_clean[["abstract"]].iterrows():
+			documents.append(row.to_string()[12:])
+
+		input_doc = request.POST['user_abstract']
+		documents.append(input_doc)
+		vect = TfidfVectorizer(min_df=1, stop_words="english")  
+		tfidf = vect.fit_transform(documents)
+		pairwise_similarity = tfidf * tfidf.T
+		df2 = pd.DataFrame(data=pairwise_similarity.toarray())
+		similarity = df2.loc[len(df2)-1]
+		similarity.pop(len(df2)-1)
+		df_clean['similarity'] = similarity
+
+		all_journals = df_clean['journal'].unique()
+		d = []
+		for j in all_journals:
+			d.append(
+				{
+					'Journal': j,
+					'Similarity': df_clean.loc[df_clean['journal'] == j, 'similarity'].mean(),
+				}
+			)
+
+		similarity_df = pd.DataFrame(d)
+		similarity_df.Similarity = pd.to_numeric(similarity_df.Similarity, errors='coerce')
+		similarity_df_sorted = similarity_df.sort_values(by='Similarity', ascending=False)
+		similarity_df_sorted = similarity_df_sorted.reset_index(drop=True)
+
+		context["match1_journal"] = similarity_df_sorted['Journal'][0]
+		context["match2_journal"] = similarity_df_sorted['Journal'][1]
+		context["match3_journal"] = similarity_df_sorted['Journal'][2]
+		context["match4_journal"] = similarity_df_sorted['Journal'][3]
+		context["match5_journal"] = similarity_df_sorted['Journal'][4]
+
+		context["match1_similarity"] = round(similarity_df_sorted['Similarity'][0],2)
+		context["match2_similarity"] = round(similarity_df_sorted['Similarity'][1],2)
+		context["match3_similarity"] = round(similarity_df_sorted['Similarity'][2],2)
+		context["match4_similarity"] = round(similarity_df_sorted['Similarity'][3],2)
+		context["match5_similarity"] = round(similarity_df_sorted['Similarity'][4],2)
 
 		return render(request, 'results.html', context)
