@@ -12,3 +12,18 @@ body {
 p {
     font-size: 14px;
 }
+
+h1 {
+    padding-top: 10px;
+}
+
+#try_again {
+    margin-top: 20px;
+}
+
+td, th {
+    text-align: left;
+    padding-right: 8px;
+    padding-bottom: 4px;
+    font-size: 14px;
+}
