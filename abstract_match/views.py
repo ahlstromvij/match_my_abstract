@@ -4,11 +4,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from .forms import AbstractForm
 import pandas as pd
-import sklearn
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
-from django.templatetags.static import static
 import os
 from django.conf import settings
 
