@@ -8,34 +8,28 @@
 <p>Here is your abstract:</p>
 <p><i>{{ user_abstract }}</i></p>
 
-<p>And here are your top-5 matches:</p>
+{% if num_matches < 1 %}
+
+<p>There were no matches.</p>
+
+{% else %}
+
+<p>And here are your top matches:</p>
 
 <table>
     <tr>
         <th>Journal</th>
         <th>Similarity</th>
     </tr>
+    {% for key, value in filtered_dict.items %}
     <tr>
-        <td>{{ match1_journal }}</td>
-        <td>{{ match1_similarity }}</td>
-    </tr>
-    <tr>
-        <td>{{ match2_journal }}</td>
-        <td>{{ match2_similarity }}</td>
-    </tr>
-    <tr>
-        <td>{{ match3_journal }}</td>
-        <td>{{ match3_similarity }}</td>
-    </tr>
-    <tr>
-        <td>{{ match4_journal }}</td>
-        <td>{{ match4_similarity }}</td>
-    </tr>
-    <tr>
-        <td>{{ match5_journal }}</td>
-        <td>{{ match5_similarity }}</td>
-    </tr>
-</table>
+        <td>{{key}}</td>
+        <td>{{value}}</td>
+    </tr>  
+    {% endfor %}
+  </table>
+
+{% endif %}
 
 <a class="btn btn-light" id="try_again" href="../">Try again</a>
 

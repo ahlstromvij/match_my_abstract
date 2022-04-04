@@ -69,16 +69,13 @@ class ResultsView(TemplateView):
 		similarity_df_sorted = similarity_df.sort_values(by='Similarity', ascending=False)
 		similarity_df_sorted = similarity_df_sorted.reset_index(drop=True)
 
-		context["match1_journal"] = similarity_df_sorted['Journal'][0]
-		context["match2_journal"] = similarity_df_sorted['Journal'][1]
-		context["match3_journal"] = similarity_df_sorted['Journal'][2]
-		context["match4_journal"] = similarity_df_sorted['Journal'][3]
-		context["match5_journal"] = similarity_df_sorted['Journal'][4]
+		num_matches = similarity_df_sorted['Similarity'][similarity_df_sorted['Similarity'] != 0].count()
+		context["num_matches"] = num_matches
 
-		context["match1_similarity"] = round(similarity_df_sorted['Similarity'][0],2)
-		context["match2_similarity"] = round(similarity_df_sorted['Similarity'][1],2)
-		context["match3_similarity"] = round(similarity_df_sorted['Similarity'][2],2)
-		context["match4_similarity"] = round(similarity_df_sorted['Similarity'][3],2)
-		context["match5_similarity"] = round(similarity_df_sorted['Similarity'][4],2)
+		keys = similarity_df_sorted['Journal'][0:5]
+		values = round(similarity_df_sorted['Similarity'][0:5],2)
+		match_dict = dict(zip(keys, values))
+		filtered_dict = {key: value for (key, value) in match_dict.items() if value > 0 }
+		context["filtered_dict"] = filtered_dict
 
 		return render(request, 'results.html', context)
