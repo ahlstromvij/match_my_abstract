@@ -1,14 +1,16 @@
 <!-- templates/home.html -->
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <h1>Match my abstract</h1>
 <p>Paste your abstract below and click submit:</p>
 <form action="/results/" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn btn-light" value="Submit">
+    {{ form|crispy }}
+    <input type="submit" id="submit" class="btn btn-light" value="Submit">
 </form>
 
 {% endblock content %}

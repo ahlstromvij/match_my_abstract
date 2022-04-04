@@ -21,6 +21,10 @@ h1 {
     margin-top: 20px;
 }
 
+#submit {
+    margin-top: 10px;
+}
+
 td, th {
     text-align: left;
     padding-right: 8px;

@@ -7,7 +7,7 @@ name = "pypi"
 django = "*"
 pandas = "*"
 sklearn = "*"
-numpy = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 
