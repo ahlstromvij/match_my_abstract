@@ -10,7 +10,7 @@ sklearn = "*"
 django-crispy-forms = "*"
 gunicorn = "==19.9.0"
 django-on-heroku = "*"
-whitenoise = "==3.3.1"
+whitenoise = "*"
 
 [dev-packages]
 
