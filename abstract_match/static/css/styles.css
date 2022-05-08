@@ -26,12 +26,12 @@ a:link {
   }
   
   a:hover {
-    text-decoration: underline;
+    text-decoration: none;
     color: #353A3F;
   }
   
   a:active {
-    text-decoration: underline;
+    text-decoration: none;
     color: #353A3F;
   }
 

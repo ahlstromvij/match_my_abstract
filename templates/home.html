@@ -10,7 +10,7 @@
 <div class="center">
     <img src="{% static 'img/doc.png' %}" width="75px"> <span class="text_shadows">=</span> <img src="{% static 'img/doc.png' %}" width="75px">
 </div>
-<p>Paste your abstract below and click submit:</p>
+<p>Paste your <b>economics</b> abstract below and click submit to match it with a suitable econ journal:</p>
 <form action="/results/" method="post">
     {% csrf_token %}
     {{ form|crispy }}
