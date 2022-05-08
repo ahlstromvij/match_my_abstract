@@ -1,9 +1,14 @@
 <!-- templates/results.html -->
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
-<h1>Match my abstract</h1>
+<h1>match my abstract</h1>
+<div class="center">
+    <img src="{% static 'img/doc.png' %}" width="75px"> <span class="text_shadows">=</span> <img src="{% static 'img/doc.png' %}" width="75px">
+</div>
 
 <p>Here is your abstract:</p>
 <p><i>{{ user_abstract }}</i></p>
@@ -31,6 +36,6 @@
 
 {% endif %}
 
-<a class="btn btn-light" id="try_again" href="../">Try again</a>
+<a class="btn btn-dark" id="try_again" href="../">Try again</a>
 
 {% endblock content %}
