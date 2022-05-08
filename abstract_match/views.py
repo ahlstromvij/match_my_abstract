@@ -12,6 +12,9 @@ from django.conf import settings
 class HomePageView(TemplateView):
 	template_name = 'home.html'
 
+class AboutPageView(TemplateView):
+	template_name = 'about.html'
+
 def get_abstract(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
