@@ -15,7 +15,7 @@
 
 {% if num_matches < 1 %}
 
-<p>There were no matches.</p>
+<p>Unfortunately, there were no matches.</p>
 
 {% else %}
 
@@ -36,6 +36,6 @@
 
 {% endif %}
 
-<a class="btn btn-dark" id="try_again" href="../">Try again</a>
+<button class="btn btn-dark" id="try_again" onclick="location.href = '../'">Try again</button>
 
 {% endblock content %}

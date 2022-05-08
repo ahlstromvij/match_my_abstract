@@ -2,7 +2,7 @@
 
 body {
     background-color: #EDEDED;
-    color: black;
+    color: #353A3F;
     max-width: 500px;
     margin: auto;
 }
@@ -13,6 +13,38 @@ body {
 
 p {
     font-size: 14px;
+}
+
+a:link {
+    text-decoration: none;
+    color: #353A3F;
+  }
+  
+  a:visited {
+    text-decoration: none;
+    color: #353A3F;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    color: #353A3F;
+  }
+  
+  a:active {
+    text-decoration: underline;
+    color: #353A3F;
+  }
+
+.fa {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 30px;
+}
+
+.bottom_copy {
+    padding-top: 10px;
+    text-align: center; 
+    font-size: 12px;
 }
 
 h1 {
